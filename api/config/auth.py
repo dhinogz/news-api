@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 router = Router(tags=["auth"])
 
 
-@router.post("/login/", response={200: str, 401: str})
+@router.post("/login", response={200: str, 401: str})
 def handle_login(request, username: Form[str], password: Form[str]):
     user = authenticate(username=username, password=password)
     if not user:
@@ -20,7 +20,7 @@ def handle_login(request, username: Form[str], password: Form[str]):
     return 200, "successful login"
 
 
-@router.post("/logout/")
+@router.post("/logout")
 def handle_logout(request):
     logout(request)
 
@@ -33,7 +33,7 @@ class UserResponse(Schema):
     last_name: str
 
 
-@router.get("/user/", response={200: UserResponse})
+@router.get("/user", response={200: UserResponse})
 def get_current_user(request: HttpRequest):
     if not request.user.is_authenticated:
         return 401, "Not authenticated"
@@ -48,7 +48,7 @@ class UserIn(Schema):
     last_name: str
 
 
-@router.post("/user/")
+@router.post("/user")
 def create_user(request: HttpRequest, response: HttpResponse, payload: UserIn):
     response["content-type"] = "text/plain"
     if not request.user.is_superuser:
