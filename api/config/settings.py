@@ -31,8 +31,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = (os.getenv('DEBUG', 'False') == 'True')
 
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(' ')
-
+ALLOWED_HOSTS = ['*']
 
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
