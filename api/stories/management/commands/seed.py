@@ -60,11 +60,18 @@ def run_seed(self, mode):
                   "Martinez", "Hart", "Finn", "Rodriguez"]
 
     User.objects.create_superuser(
-        password=settings.ADMIN_PASSWORD,
         username=settings.ADMIN_USERNAME,
+        password=settings.ADMIN_PASSWORD,
         email=settings.ADMIN_EMAIL,
         first_name="Super",
         last_name="User",
+    )
+    User.objects.create_superuser(
+        username=settings.PROFESSOR_USERNAME,
+        password=settings.PROFESSOR_PASSWORD,
+        email=settings.PROFESSOR_EMAIL,
+        first_name=settings.PROFESSOR_FIRST_NAME,
+        last_name=settings.PROFESSOR_LAST_NAME,
     )
     for _ in range(10):
         first_name = random.choice(first_names)
