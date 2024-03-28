@@ -73,14 +73,16 @@ class Client(requests.Session):
             self.baseurl = DEFAULT_BASE_URL
             self.session_token = DEFAULT_TOKEN
 
-    def login(self, url: str, username: str, password: str) -> None:
+    def login(self, url: str, username: str, password: str) -> bool:
         data = {
             "username": username,
             "password": password,
         }
-        resp = self.post("api/login/", data)
+        if url[-1] == "/":
+            url = url[:-1]
+        resp = self.post(f"{url}/api/login/", data)
         if resp.status_code != 200:
-            print("login failed")
+            return False
         for c in resp.cookies:
             if c.name == "sessionid":
                 token = c.value
@@ -92,9 +94,12 @@ class Client(requests.Session):
         self.session_token = token
 
         print("session.txt file created with auth details")
+        return True
 
     def logout(self) -> None:
-        self.post("api/logout/")
+        self._load_session_data()
+        url = f"{self.baseurl}/api/logout/"
+        self.post(url)
         if os.path.exists(SESSION_FILE_PATH):
             os.remove(SESSION_FILE_PATH)
 

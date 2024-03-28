@@ -1,2 +1,2 @@
-localhost:8000
-iftuh4cz25cuc9binsbn51yymhgz6b4l
+https://sc23dhg.pythonanywhere.com
+zvcyickorzrvirns94jqy5tci1xbg4fa

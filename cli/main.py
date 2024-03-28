@@ -11,16 +11,25 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command()
 def login(url: str):
+    """
+       Logs in to a specific service given by the user. This will create a session.text file with the service's URL and session token.
+    """
     username = typer.prompt("Username")
     password = typer.prompt("Password")
     c = client.Client()
-    c.login(url, username, password)
-
-    print("successful login")
+    is_logged_in = c.login(url, username, password)
+    if is_logged_in:
+        print("successful login")
+    else:
+        print("login failed")
 
 
 @app.command()
 def logout():
+    """
+        Logs user out. This deletes the session.txt file.
+    """
+
     c = client.Client()
     c.logout()
 
@@ -74,6 +83,9 @@ def news(
 
 @app.command()
 def post():
+    """
+        Prompts user for a new story to be sent to current service saved in session.txt. This requires the user to be logged in.
+    """
     headline = typer.prompt("Headline")
     category = typer.prompt("Category")
     region = typer.prompt("Region")
@@ -93,6 +105,9 @@ def post():
 
 @app.command()
 def list():
+    """
+        Prints out the agency registry.
+    """
     c = client.Client()
     with Progress(
         SpinnerColumn(),
@@ -107,6 +122,9 @@ def list():
 
 @app.command()
 def delete(story_key: str):
+    """
+        Deletes given story. This requires the user to be logged in.
+    """
     c = client.Client()
     is_deleted = c.delete_story(story_key)
     if not is_deleted:

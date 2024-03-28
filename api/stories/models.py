@@ -17,3 +17,8 @@ class Story(models.Model):
 
     class Meta:
         verbose_name_plural = "stories"
+        indexes = [
+            models.Index(fields=['region']),
+            models.Index(fields=['date']),
+            models.Index(fields=['category']),
+        ]
