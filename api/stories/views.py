@@ -5,7 +5,6 @@ from ninja import Router
 from .schemas import StoryIn, StoryResponse, ListStoryResponse
 from .models import Story
 from .helpers import validate_story
-# from django.contrib.auth.models import User
 
 router = Router(tags=["stories"])
 
