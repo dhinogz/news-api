@@ -45,8 +45,13 @@ def run_seed(self, mode):
     # Dummy data for seeding
     headlines = ["Breaking News!", "Local Events Update",
                  "Weather Forecast", "Community Announcement", "Sports Update"]
-    details = ["Lorem ipsum dolor sit amet, consectetur adipiscing elit.", "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-               "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."]
+    details = [
+        "New breakthrough in artificial intelligence research.",
+        "Recent developments in parliamentary negotiations.",
+        "Art exhibition showcasing local talent.",
+        "Did you know? The world's largest pizza was made in Italy.",
+        "Rain expected in the region tomorrow. Stay prepared!"
+    ]
     categories = ["tech", "politics", "art", "trivia"]
     regions = ["eu", "uk", "w"]
     first_names = ["John", "Juan", "David",
