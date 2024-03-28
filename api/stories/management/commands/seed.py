@@ -56,7 +56,7 @@ def run_seed(self, mode):
 
     User.objects.create_superuser(
         password=settings.ADMIN_PASSWORD,
-        username=settings.ADMIN_PASSWORD,
+        username=settings.ADMIN_USERNAME,
         email=settings.ADMIN_EMAIL,
         first_name="Super",
         last_name="User",
